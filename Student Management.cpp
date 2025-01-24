@@ -7,14 +7,25 @@ class Department
     string subjects[6] = {};
 
 public:
-    Department(string d_name, string &subs[]){
-        dept_name = d_name;
-        for(int i=0; i<subs.size() && i<6; ++i)
+    Department(){}
+
+    //Department creation method
+    void create_department(){
+        cout<<"Enter department name: ";
+        cin>>this->dept_name;
+        cout<<"Enter the name of the 6 subjects of the department\n";
+        for(int i=0; i<6; ++i)
         {
-            subjects[i] = sub[i];
+            cout<<"Subject "<<i+1<<": ";
+            cin>>this->subjects[i];
         }
+
     }
 };
+
+
+vector<Department> Available_departments;
+
 
 class Student
 {
@@ -40,15 +51,18 @@ public:
 
     void show_student_info()
     {
-        cout<<"Name : "<<name<<endl;
+        cout<<"\n\nName : "<<name<<endl;
         cout<<"Roll : "<<roll<<endl;
         cout<<"Age : "<<age<<endl;
         cout<<"Department : "<<department.dept_name<<endl;
 
         if(grade[0] != -1)
-        {
+            for(int i=0; i<6; ++i)
+                cout<<department.subjects[i]<<": "<<grade[i]<<endl;
+        else
+            cout<<"Grade not assigned yet.\n";
 
-        }
+        cout<<endl;
     }
 
     void assign_grades()
@@ -56,13 +70,12 @@ public:
         cout<<"Enter grades for the subjects:\n";
         for(int i=0; i<6; ++i)
         {
-            cout<<department.subjects[i]<<" : ";
+            cout<<department.subjects[i]<<": ";
             cin>>grade[i];
         }
     }
 };
 
-vector<Department> departments;
 
 class Student_Management
 {
